@@ -7,9 +7,9 @@ let getNGrams = Seq.windowed
     
 let transitions (ngrams : string[] seq) = 
     ngrams 
-    |> Seq.map (fun x -> (Seq.take (Seq.length x - 1) x, Seq.last x))
+    |> Seq.map (fun x -> (Array.take (Array.length x - 1) x,  Array.last x))
     |> Seq.groupBy fst
-    |> Seq.map (fun (a,b) -> (Seq.toArray a, Seq.map snd b))  
+    |> Seq.map (fun (a,b) -> (a, Seq.map snd b))
 
 let rec talk (seed : string[]) (transitions : (string [] * string seq) seq) = 
     seq {
